@@ -1,0 +1,38 @@
+<p-panel [style]="{'margin-bottom':'20px'}">
+  <p-header>
+    <span class="ui-panel-title headerTitle">List Of Employees</span>
+  </p-header>
+
+  <!-- <div style="margin-bottom: 5px;">
+    <a [routerLink]="['/fournisseur']">
+      <p-button icon="pi pi-plus" label="Add Users"></p-button>
+    </a>
+  </div>
+-->
+  <p-table #dt [value]="fournisseurs" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>EmployeeName</th>
+        <th>Employee ID</th>
+      </tr>
+      <tr>
+        <th class="center">
+          <input pInputText type="text" (input)="dt.filter($event.target.value, 'reference', 'contains');"
+            [(ngModel)]="reference" class="size" />
+        </th>
+        <th class="center">
+          <input pInputText type="text" (input)="dt.filter($event.target.value, 'nom', 'contains');" [(ngModel)]="nom"
+            class="size" />
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-fournisseur>
+      <tr>
+        <td>{{fournisseur.reference}}</td>
+        <td>{{fournisseur.nom}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+
+</p-panel>

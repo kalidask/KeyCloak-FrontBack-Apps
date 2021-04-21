@@ -1,0 +1,47 @@
+<form #formFournisseur="ngForm" (ngSubmit)="valider(formFournisseur)" *ngIf="!loading">
+  <p-panel [style]="{'margin-bottom':'20px'}">
+
+    <p-header>
+      <div class="ui-helper-clearfix">
+        <span class="ui-panel-title headerTitle">
+          {{action == 'add' ? 'Add Users' : (action == 'edit' ? 'Modifier' : 'Consulter' ) }} un fournisseur
+        </span>
+
+        <div style="float:right">
+          <button pButton type="button" icon="pi pi-check" label="Valider" class="ui-button-success" type="submit"
+            style="margin-right: 5px;" [disabled]="action=='show'"></button>
+          <button pButton type="button" icon="pi pi-chevron-left" label="Précédent"
+            class="ui-button-raised ui-button-warning" (click)="precedent()" style="margin-left: 5px;"></button>
+        </div>
+      </div>
+    </p-header>
+
+
+
+    <div class="p-grid">
+      <div class="p-col-2">
+        <label class="col-form-label">Référence </label>
+      </div>
+      <div class="p-col-4">
+        <input type="text" size="30" pInputText [(ngModel)]="fournisseur.reference" [readonly]="action=='show'"
+          name="reference" required #refFournisseur="ngModel"
+          [class.field-error]="formFournisseur.submitted && refFournisseur.invalid">
+
+      </div>
+    </div>
+
+    <div class="p-grid">
+      <div class="p-col-2">
+        <label class="col-form-label">Nom</label>
+      </div>
+      <div class="p-col-4">
+        <input type="text" size="30" pInputText [(ngModel)]="fournisseur.nom" [readonly]="action=='show'" name="nom"
+          required #nom="ngModel" [class.field-error]="formFournisseur.submitted && nom.invalid">
+
+      </div>
+    </div>
+
+
+  </p-panel>
+
+</form>
